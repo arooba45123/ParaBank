@@ -19,17 +19,19 @@ public class BaseTest {
 
         ChromeOptions options = new ChromeOptions();
 
-        // 🔷 Disable password manager and credential services
+        // Preferences
         Map<String, Object> prefs = new HashMap<>();
         prefs.put("credentials_enable_service", false);
         prefs.put("profile.password_manager_enabled", false);
+
+        // Automatically allow Geo Location
+        prefs.put("profile.default_content_setting_values.geolocation", 1);
+
         options.setExperimentalOption("prefs", prefs);
 
-        // 🔷 Start with a clean profile
+        // Other options
         options.addArguments("--incognito");
         options.addArguments("--disable-blink-features=AutomationControlled");
-
-        // Optional: hide "controlled by automation"
         options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
 
         driver = new ChromeDriver(options);
@@ -43,3 +45,5 @@ public class BaseTest {
         }
     }
 }
+
+

@@ -3,6 +3,10 @@ package herokuapp.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class EntryAdPage {
 
@@ -19,23 +23,23 @@ public class EntryAdPage {
     }
 
     
-     // Check if the modal is displayed
+    //  Wait for the modal to appear and return true if it does.
      
-    public boolean isModalDisplayed() {
-        WebElement modalElement = driver.findElement(modal);
-        return modalElement.isDisplayed();
+    public boolean waitForModalDisplayed() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        try {
+            WebElement modalElement = wait.until(ExpectedConditions.visibilityOfElementLocated(modal));
+            return modalElement.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    
-     //  Get the modal's title text
-     
     public String getModalTitle() {
-        return driver.findElement(modalTitle).getText().trim();
+        WebElement title = driver.findElement(modalTitle);
+        return title.getText().trim();
     }
 
-    
-     // Close the modal by clicking the close button
-     
     public void closeModal() {
         driver.findElement(closeButton).click();
     }

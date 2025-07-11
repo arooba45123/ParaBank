@@ -8,59 +8,52 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class EntryAdTest extends BaseTest {
 
-    
-     // Positive Test: Verify that the Entry Ad modal appears on page load and can be closed successfully.
-     
+    private final String url = "https://the-internet.herokuapp.com/entry_ad";
+
     @Test
     public void testEntryAdModalAppearsAndCanBeClosed() {
-        driver.get("https://the-internet.herokuapp.com/entry_ad");
+        driver.manage().deleteAllCookies();
+        driver.get(url);
 
         EntryAdPage entryAdPage = new EntryAdPage(driver);
 
-        // Check that modal appears
-        assertTrue(entryAdPage.isModalDisplayed(), "Modal should appear on page load");
+        assertTrue(entryAdPage.waitForModalDisplayed(), "Modal should appear on page load");
         System.out.println("Positive Test: Modal displayed with title: " + entryAdPage.getModalTitle());
 
-        // Close the modal
         entryAdPage.closeModal();
         System.out.println("Positive Test: Modal closed successfully");
     }
 
-    
-     // Negative Test 1: Verify that the modal does NOT display unexpected text in the title.
-     
     @Test
     public void testModalTitleDoesNotHaveUnexpectedText() {
-        driver.get("https://the-internet.herokuapp.com/entry_ad");
+        driver.manage().deleteAllCookies();
+        driver.get(url);
 
         EntryAdPage entryAdPage = new EntryAdPage(driver);
+
+        assertTrue(entryAdPage.waitForModalDisplayed(), "Modal should appear on page load");
 
         String actualTitle = entryAdPage.getModalTitle();
         assertNotEquals("Unexpected Title", actualTitle, "Modal title should not be 'Unexpected Title'");
         System.out.println("Negative Test 1: Modal title is correct and not unexpected.");
     }
 
-    
-      // Negative Test 2: Verify that the modal is no longer visible or click able after being closed.
-     
     @Test
     public void testModalNotVisibleAfterClose() {
-        driver.get("https://the-internet.herokuapp.com/entry_ad");
+        driver.manage().deleteAllCookies();
+        driver.get(url);
 
         EntryAdPage entryAdPage = new EntryAdPage(driver);
 
-        // Check modal appears
-        assertTrue(entryAdPage.isModalDisplayed(), "Modal should appear on page load");
+        assertTrue(entryAdPage.waitForModalDisplayed(), "Modal should appear on page load");
         System.out.println("Modal displayed initially");
 
-        // Close modal
         entryAdPage.closeModal();
         System.out.println("Modal closed");
 
-        // Verify modal no longer visible
         boolean modalStillVisible;
         try {
-            modalStillVisible = entryAdPage.isModalDisplayed();
+            modalStillVisible = entryAdPage.waitForModalDisplayed();
         } catch (Exception e) {
             modalStillVisible = false; // Modal element is not found anymore
         }
@@ -69,3 +62,4 @@ public class EntryAdTest extends BaseTest {
         System.out.println("Negative Test 2: Modal not visible after closing (as expected).");
     }
 }
+
