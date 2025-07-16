@@ -64,7 +64,7 @@ public class ShiftingContentListTest extends BaseTest {
             System.out.println("Expected text '" + expectedText + "' is NOT present.");
         }
 
-        // No assertion here, just observation
+        // no assertion here , just observation
     }
 
     @Test

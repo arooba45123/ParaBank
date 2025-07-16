@@ -40,6 +40,6 @@ import org.junit.platform.suite.api.Suite;
     TyposTest.class
 })
 public class herokuappTestSuite {
-    // This class is just a holder for the suite annotations
+   
 }
 
