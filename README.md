@@ -1,3 +1,0 @@
-# Ultimateqa
-# Techlistic
-# ParaBank
