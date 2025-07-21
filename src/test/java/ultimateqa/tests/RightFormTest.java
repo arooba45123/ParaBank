@@ -2,9 +2,10 @@ package ultimateqa.tests;
 
 import ultimateqa.base.BaseTest;
 import ultimateqa.pages.RightFormPage;
-import ultimateqa.utils.ExcelUtils;
 
 import org.junit.jupiter.api.Test;
+
+import common.utils.ExcelUtils;
 
 public class RightFormTest extends BaseTest {
 

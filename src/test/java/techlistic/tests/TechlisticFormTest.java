@@ -1,9 +1,10 @@
 package techlistic.tests;
 
 import org.junit.jupiter.api.Test;
+
+import common.utils.ExcelUtils;
 import techlistic.base.BaseTest;
 import techlistic.pages.TechlisticFormPage;
-import ultimateqa.utils.ExcelUtils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -52,7 +53,7 @@ public class TechlisticFormTest extends BaseTest {
                 ExcelUtils.setCellData(excelPath, sheetName, i, 12, "FAIL");
             }
 
-            // ✅ Assertion
+            //  Assertion
             assertEquals(expectedResult, actualResult, "Row " + i + " failed: Expected vs Actual mismatch");
         }
     }

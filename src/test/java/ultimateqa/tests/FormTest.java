@@ -2,8 +2,11 @@ package ultimateqa.tests;
 
 import ultimateqa.base.BaseTest;
 import ultimateqa.pages.FormPage;
-import ultimateqa.utils.ExcelUtils;
+
 import org.junit.jupiter.api.Test;
+
+import common.utils.ExcelUtils;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FormTest extends BaseTest {
